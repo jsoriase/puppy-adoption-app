@@ -18,11 +18,19 @@ package com.example.androiddevchallenge
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
+import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
+import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavType
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.navArgument
+import androidx.navigation.compose.rememberNavController
+import com.example.androiddevchallenge.ui.composable.AppBar
+import com.example.androiddevchallenge.ui.screens.DetailScreen
+import com.example.androiddevchallenge.ui.screens.ListScreen
 import com.example.androiddevchallenge.ui.theme.MyTheme
 
 class MainActivity : AppCompatActivity() {
@@ -39,9 +47,32 @@ class MainActivity : AppCompatActivity() {
 // Start building your app here!
 @Composable
 fun MyApp() {
-    Surface(color = MaterialTheme.colors.background) {
-        Text(text = "Ready... Set... GO!")
-    }
+
+    val navController = rememberNavController()
+    val scaffoldState = rememberScaffoldState()
+    Scaffold(
+        scaffoldState = scaffoldState,
+        topBar = {
+            AppBar(title = {
+                Text(text = "AdoptAPuppy")
+            })
+        },
+        content = {
+            NavHost(navController, startDestination = "main") {
+                composable("main") { ListScreen(navController) }
+                composable(
+                    "puppy/{puppyId}",
+                    arguments = listOf(navArgument("puppyId") { type = NavType.IntType })
+                )
+                { backStackEntry ->
+                    DetailScreen(navController, backStackEntry.arguments?.getInt("puppyId")!!)
+                }
+            }
+        }
+    )
+
+
+
 }
 
 @Preview("Light Theme", widthDp = 360, heightDp = 640)
