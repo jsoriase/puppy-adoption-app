@@ -31,13 +31,13 @@ import androidx.navigation.compose.rememberNavController
 import com.example.androiddevchallenge.ui.composable.AppBar
 import com.example.androiddevchallenge.ui.screens.DetailScreen
 import com.example.androiddevchallenge.ui.screens.ListScreen
-import com.example.androiddevchallenge.ui.theme.MyTheme
+import com.example.androiddevchallenge.ui.theme.PuppyTheme
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MyTheme {
+            PuppyTheme {
                 MyApp()
             }
         }
@@ -53,9 +53,11 @@ fun MyApp() {
     Scaffold(
         scaffoldState = scaffoldState,
         topBar = {
-            AppBar(title = {
-                Text(text = "AdoptAPuppy")
-            })
+            AppBar(
+                title = {
+                    Text(text = "AdoptAPuppy")
+                }
+            )
         },
         content = {
             NavHost(navController, startDestination = "main") {
@@ -63,22 +65,18 @@ fun MyApp() {
                 composable(
                     "puppy/{puppyId}",
                     arguments = listOf(navArgument("puppyId") { type = NavType.IntType })
-                )
-                { backStackEntry ->
+                ) { backStackEntry ->
                     DetailScreen(navController, backStackEntry.arguments?.getInt("puppyId")!!)
                 }
             }
         }
     )
-
-
-
 }
 
 @Preview("Light Theme", widthDp = 360, heightDp = 640)
 @Composable
 fun LightPreview() {
-    MyTheme {
+    PuppyTheme {
         MyApp()
     }
 }
@@ -86,7 +84,7 @@ fun LightPreview() {
 @Preview("Dark Theme", widthDp = 360, heightDp = 640)
 @Composable
 fun DarkPreview() {
-    MyTheme(darkTheme = true) {
+    PuppyTheme(darkTheme = true) {
         MyApp()
     }
 }
