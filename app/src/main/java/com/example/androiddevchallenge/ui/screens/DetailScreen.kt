@@ -38,9 +38,11 @@ import com.example.androiddevchallenge.data.PuppyStaticData
 @Composable
 fun DetailScreen(navController: NavController, puppyId: Int) {
     val puppy = PuppyStaticData.getPuppy(puppyId)
-    Column(modifier = Modifier
-        .padding(horizontal = 12.dp, vertical = 8.dp)
-        .fillMaxHeight()) {
+    Column(
+        modifier = Modifier
+            .padding(horizontal = 12.dp, vertical = 8.dp)
+            .fillMaxHeight()
+    ) {
         Image(painter = painterResource(id = puppy.resourceImage), contentDescription = puppy.contentDescription)
         Text(
             modifier = Modifier.padding(vertical = 4.dp),
@@ -51,18 +53,24 @@ fun DetailScreen(navController: NavController, puppyId: Int) {
             )
         )
         Row {
-            Icon(painter = painterResource(id = R.drawable.location),
-                contentDescription = "Location")
+            Icon(
+                painter = painterResource(id = R.drawable.location),
+                contentDescription = "Location"
+            )
             Text(puppy.location)
         }
         Row(modifier = Modifier.padding(vertical = 4.dp)) {
-            Icon(painter = painterResource(id = R.drawable.cat_footprint),
-                contentDescription = "Breed")
+            Icon(
+                painter = painterResource(id = R.drawable.cat_footprint),
+                contentDescription = "Breed"
+            )
             Text(puppy.breed)
         }
         Row {
-            Icon(painter = painterResource(id = R.drawable.sand_clock),
-                contentDescription = "Age")
+            Icon(
+                painter = painterResource(id = R.drawable.sand_clock),
+                contentDescription = "Age"
+            )
             Text(puppy.age)
         }
         Button(
