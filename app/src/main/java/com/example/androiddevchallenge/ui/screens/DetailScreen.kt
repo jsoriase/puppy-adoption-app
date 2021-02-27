@@ -17,11 +17,13 @@ package com.example.androiddevchallenge.ui.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Button
+import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -31,28 +33,45 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.androiddevchallenge.R
 import com.example.androiddevchallenge.data.PuppyStaticData
 @Composable
 fun DetailScreen(navController: NavController, puppyId: Int) {
     val puppy = PuppyStaticData.getPuppy(puppyId)
-    Column(modifier = Modifier.padding(horizontal = 12.dp, vertical = 8.dp).fillMaxHeight()) {
+    Column(modifier = Modifier
+        .padding(horizontal = 12.dp, vertical = 8.dp)
+        .fillMaxHeight()) {
         Image(painter = painterResource(id = puppy.resourceImage), contentDescription = puppy.contentDescription)
         Text(
+            modifier = Modifier.padding(vertical = 4.dp),
             text = puppy.name,
             style = TextStyle(
                 fontSize = 24.sp,
                 fontWeight = FontWeight.ExtraBold
             )
         )
-        Text(puppy.location)
-        Text("Breed: ${puppy.breed}")
-        Text("Age: ${puppy.age}")
+        Row {
+            Icon(painter = painterResource(id = R.drawable.location),
+                contentDescription = "Location")
+            Text(puppy.location)
+        }
+        Row(modifier = Modifier.padding(vertical = 4.dp)) {
+            Icon(painter = painterResource(id = R.drawable.cat_footprint),
+                contentDescription = "Breed")
+            Text(puppy.breed)
+        }
+        Row {
+            Icon(painter = painterResource(id = R.drawable.sand_clock),
+                contentDescription = "Age")
+            Text(puppy.age)
+        }
         Button(
             content = { Text("Adopt me!") },
             onClick = {
                 // TODO: Adoption screen
             },
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
                 .height(60.dp)
                 .padding(vertical = 8.dp)
         )

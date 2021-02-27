@@ -18,6 +18,10 @@ The app was made in order to learn Compose UI and its current capabilities. I to
 <img src="/results/screenshot_1.png" width="260">&emsp;<img src="/results/screenshot_2.png" width="260">
 <img src="/results/screenshot_3.png" width="260">&emsp;<img src="/results/screenshot_4.png" width="260">
 
+## Credits
+Icons by [icons8](https://icons8.com/)
+Puppy images from [Pixabay](https://pixabay.com/)
+
 ## License
 ```
 Copyright 2020 The Android Open Source Project
