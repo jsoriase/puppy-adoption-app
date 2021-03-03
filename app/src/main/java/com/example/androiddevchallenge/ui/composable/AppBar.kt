@@ -41,7 +41,6 @@ fun AppBar(
     Column {
         TopAppBar(
             modifier = modifier,
-            elevation = 0.dp,
             backgroundColor = MaterialTheme.colors.primary,
             contentColor = MaterialTheme.colors.onSurface,
             actions = actions,

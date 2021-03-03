@@ -18,11 +18,13 @@ buildscript {
     ext.kotlin_version = '1.4.30'
     ext.compose_version = '1.0.0-beta01'
     ext.coroutines_version = '1.4.2'
-    ext.nav_version = '2.3.3'
     ext.nav_compose_version = '1.0.0-alpha08'
+    ext.lottieVersion = '1.0.0-alpha07-SNAPSHOT'
+
     repositories {
         google()
         jcenter()
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
     }
 
     dependencies {
@@ -39,6 +41,7 @@ subprojects {
     repositories {
         google()
         jcenter()
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
     }
 
     apply plugin: 'com.diffplug.spotless'

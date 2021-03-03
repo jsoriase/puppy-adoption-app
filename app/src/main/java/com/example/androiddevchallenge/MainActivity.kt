@@ -20,7 +20,6 @@ import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
-import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavType
@@ -29,8 +28,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.navArgument
 import androidx.navigation.compose.rememberNavController
 import com.example.androiddevchallenge.ui.composable.AppBar
-import com.example.androiddevchallenge.ui.screens.DetailScreen
-import com.example.androiddevchallenge.ui.screens.ListScreen
+import com.example.androiddevchallenge.ui.screens.detail.DetailScreen
+import com.example.androiddevchallenge.ui.screens.list.ListScreen
 import com.example.androiddevchallenge.ui.theme.PuppyTheme
 
 class MainActivity : AppCompatActivity() {
@@ -49,9 +48,7 @@ class MainActivity : AppCompatActivity() {
 fun MyApp() {
 
     val navController = rememberNavController()
-    val scaffoldState = rememberScaffoldState()
     Scaffold(
-        scaffoldState = scaffoldState,
         topBar = {
             AppBar(
                 title = {
