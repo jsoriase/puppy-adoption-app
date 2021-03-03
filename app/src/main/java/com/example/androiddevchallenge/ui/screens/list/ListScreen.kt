@@ -15,15 +15,16 @@
  */
 package com.example.androiddevchallenge.ui.screens.list
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.compose.runtime.getValue
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.navigate
@@ -34,14 +35,14 @@ import com.example.androiddevchallenge.ui.composable.Loading
 @Composable
 fun ListScreen(navController: NavController, listViewModel: ListViewModel = viewModel()) {
 
-    LaunchedEffect(1) { //key1 has the value 1 because potato. If it is a var it will be relaunched when the value changes, since I dont want to relaunch it, it is just 1 forever
-        //TODO: Dont like this much, however it doesnt navigate without this since it keeps asking for puppies when rebuilding. Should I move the navController up to the viewmodel?
-        //TODO: Peek other puppy apps to see how they handle this
+    LaunchedEffect(1) { // key1 has the value 1 because potato. If it is a var it will be relaunched when the value changes, since I dont want to relaunch it, it is just 1 forever
+        // TODO: Dont like this much, however it doesnt navigate without this since it keeps asking for puppies when rebuilding. Should I move the navController up to the viewmodel?
+        // TODO: Peek other puppy apps to see how they handle this
         listViewModel.launchIntent(ListIntent.LoadPuppies)
     }
 
     val state: ListState by listViewModel.state.observeAsState(ListState.LoadingPuppies)
-    when(state){
+    when (state) {
         is ListState.LoadingPuppies -> Loading()
         is ListState.PuppyList -> PuppyList(puppies = (state as ListState.PuppyList).puppies)
         is ListState.ErrorPuppies -> Error("An error happened when loading the puppies")
@@ -65,5 +66,3 @@ fun PuppyList(puppies: List<Puppy>) {
         }
     }
 }
-
-

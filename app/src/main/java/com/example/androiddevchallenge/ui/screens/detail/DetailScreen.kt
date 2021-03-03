@@ -45,9 +45,9 @@ import com.example.androiddevchallenge.ui.composable.Loading
 @Composable
 fun DetailScreen(navController: NavController, puppyId: Int, detailViewModel: DetailViewModel = viewModel()) {
 
-    LaunchedEffect(1) { //key1 has the value 1 because potato. If it is a var it will be relaunched when the value changes, since I dont want to relaunch it, it is just 1 forever
-        //TODO: Dont like this much, however it doesnt navigate without this since it keeps asking for puppies when rebuilding. Should I move the navController up to the viewmodel?
-        //TODO: Peek other puppy apps to see how they handle this
+    LaunchedEffect(1) { // key1 has the value 1 because potato. If it is a var it will be relaunched when the value changes, since I dont want to relaunch it, it is just 1 forever
+        // TODO: Dont like this much, however it doesnt navigate without this since it keeps asking for puppies when rebuilding. Should I move the navController up to the viewmodel?
+        // TODO: Peek other puppy apps to see how they handle this
         detailViewModel.launchIntent(DetailIntent.LoadPuppy(puppyId))
     }
 
@@ -57,7 +57,6 @@ fun DetailScreen(navController: NavController, puppyId: Int, detailViewModel: De
         is DetailState.ErrorPuppy -> Error(text = "Error loading puppy. This is a 1/10 probability and its forced just to show the error state")
         is DetailState.PuppyObtained -> PuppyDetail((state as DetailState.PuppyObtained).puppy)
     }
-
 }
 
 @Composable
