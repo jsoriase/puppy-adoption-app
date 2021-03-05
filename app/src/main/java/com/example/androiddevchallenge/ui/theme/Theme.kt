@@ -25,7 +25,7 @@ import androidx.compose.ui.graphics.Color
 private val DarkColorPalette = darkColors(
     primary = Red300,
     primaryVariant = Red700,
-    onPrimary = Color.Black,
+    onPrimary = Color.White,
     onSurface = Color.White,
     secondary = Red300,
     secondaryVariant = Red700,
@@ -54,7 +54,7 @@ private val LightColorPalette = lightColors(
 )
 
 @Composable
-fun PuppyTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable() () -> Unit) {
+fun PuppyTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
     val colors = if (darkTheme) {
         DarkColorPalette
     } else {

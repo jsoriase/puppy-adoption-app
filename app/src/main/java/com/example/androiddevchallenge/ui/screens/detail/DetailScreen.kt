@@ -27,6 +27,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
 import androidx.compose.material.Card
 import androidx.compose.material.Icon
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -36,14 +37,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.androiddevchallenge.R
 import com.example.androiddevchallenge.model.Puppy
 import com.example.androiddevchallenge.ui.composable.Error
 import com.example.androiddevchallenge.ui.composable.Loading
+import com.example.androiddevchallenge.ui.theme.PuppyTheme
 
 @Composable
 fun DetailScreen(navController: NavController, puppyId: Int, detailViewModel: DetailViewModel = viewModel()) {
@@ -85,21 +89,24 @@ fun PuppyDetail(puppy: Puppy) {
                 Row {
                     Icon(
                         painter = painterResource(id = R.drawable.location),
-                        contentDescription = "Location"
+                        contentDescription = "Location",
+                        tint = MaterialTheme.colors.onSurface
                     )
                     Text(puppy.location)
                 }
                 Row(modifier = Modifier.padding(vertical = 4.dp)) {
                     Icon(
                         painter = painterResource(id = R.drawable.cat_footprint),
-                        contentDescription = "Breed"
+                        contentDescription = "Breed",
+                        tint = MaterialTheme.colors.onSurface
                     )
                     Text(puppy.breed)
                 }
                 Row {
                     Icon(
                         painter = painterResource(id = R.drawable.sand_clock),
-                        contentDescription = "Age"
+                        contentDescription = "Age",
+                        tint = MaterialTheme.colors.onSurface
                     )
                     Text(puppy.age)
                 }
@@ -115,5 +122,23 @@ fun PuppyDetail(puppy: Puppy) {
                 )
             }
         }
+    }
+}
+
+@Preview
+@Composable
+fun DetailScreen() {
+    PuppyTheme {
+        val navController = rememberNavController()
+        DetailScreen(navController = navController, puppyId = 1)
+    }
+}
+
+@Preview
+@Composable
+fun DetailScreenDark() {
+    PuppyTheme(darkTheme = true) {
+        val navController = rememberNavController()
+        DetailScreen(navController = navController, puppyId = 1)
     }
 }
