@@ -22,7 +22,9 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.CornerSize
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Card
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -39,22 +41,25 @@ import com.example.androiddevchallenge.ui.theme.PuppyTheme
 @Composable
 fun DogListItem(puppy: Puppy, onClick: () -> Unit) {
 
-    val image = painterResource(id = puppy.resourceImage)
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier.fillMaxWidth().clickable(onClick = onClick)
+    Card(
+        shape = RoundedCornerShape(CornerSize(16.dp), CornerSize(16.dp), CornerSize(16.dp), CornerSize(16.dp)),
     ) {
-        Image(
-            painter = image,
-            contentDescription = puppy.contentDescription,
-            modifier = Modifier
-                .size(80.dp)
-                .clip(CircleShape),
-            contentScale = ContentScale.FillHeight
-        )
-        Column(modifier = Modifier.padding(start = 8.dp)) {
-            Text("${puppy.name} - ${puppy.breed}")
-            Text(puppy.location)
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.fillMaxWidth().clickable(onClick = onClick)
+        ) {
+            Image(
+                painter = painterResource(id = puppy.resourceImage),
+                contentDescription = puppy.contentDescription,
+                modifier = Modifier
+                    .size(80.dp)
+                    .clip(RoundedCornerShape(CornerSize(16.dp), CornerSize(16.dp), CornerSize(16.dp), CornerSize(16.dp))),
+                contentScale = ContentScale.FillHeight
+            )
+            Column(modifier = Modifier.padding(start = 8.dp)) {
+                Text("${puppy.name} - ${puppy.breed}")
+                Text(puppy.location)
+            }
         }
     }
 }

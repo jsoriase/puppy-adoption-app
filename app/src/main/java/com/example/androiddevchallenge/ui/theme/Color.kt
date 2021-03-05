@@ -20,3 +20,5 @@ import androidx.compose.ui.graphics.Color
 val Red300 = Color(0xffea6d7e)
 val Red700 = Color(0xffdd0d3c)
 val Red900 = Color(0xffc20029)
+val LightBackground = Color(0xfff1f1f1)
+val DarkBackground = Color(0xff0d0d0d)

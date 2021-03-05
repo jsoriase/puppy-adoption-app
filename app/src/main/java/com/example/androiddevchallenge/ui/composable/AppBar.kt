@@ -42,7 +42,7 @@ fun AppBar(
         TopAppBar(
             modifier = modifier,
             backgroundColor = MaterialTheme.colors.primary,
-            contentColor = MaterialTheme.colors.onSurface,
+            contentColor = MaterialTheme.colors.onPrimary,
             actions = actions,
             title = { Row { title() } },
             navigationIcon = {
@@ -59,15 +59,15 @@ fun AppBar(
 
 @Preview
 @Composable
-fun CntAppBarPreview() {
-    PuppyTheme() {
+fun AppBarPreview() {
+    PuppyTheme {
         AppBar(title = { Text("Preview!") })
     }
 }
 
 @Preview
 @Composable
-fun CntAppBarPreviewDark() {
+fun AppBarPreviewDark() {
     PuppyTheme(darkTheme = true) {
         AppBar(title = { Text("Preview!") })
     }

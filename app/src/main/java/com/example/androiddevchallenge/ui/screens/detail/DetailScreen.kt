@@ -22,7 +22,10 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.CornerSize
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
+import androidx.compose.material.Card
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -66,46 +69,51 @@ fun PuppyDetail(puppy: Puppy) {
             .fillMaxHeight()
     ) {
         Image(painter = painterResource(id = puppy.resourceImage), contentDescription = puppy.contentDescription)
-        Column(modifier = Modifier.padding(horizontal = 12.dp, vertical = 8.dp)) {
-            Text(
-                modifier = Modifier.padding(vertical = 4.dp),
-                text = puppy.name,
-                style = TextStyle(
-                    fontSize = 24.sp,
-                    fontWeight = FontWeight.ExtraBold
+        Card(
+            modifier = Modifier.padding(horizontal = 12.dp, vertical = 8.dp),
+            shape = RoundedCornerShape(CornerSize(16.dp), CornerSize(16.dp), CornerSize(16.dp), CornerSize(16.dp))
+        ) {
+            Column(modifier = Modifier.padding(horizontal = 12.dp, vertical = 8.dp)) {
+                Text(
+                    modifier = Modifier.padding(vertical = 4.dp),
+                    text = puppy.name,
+                    style = TextStyle(
+                        fontSize = 24.sp,
+                        fontWeight = FontWeight.ExtraBold
+                    )
                 )
-            )
-            Row {
-                Icon(
-                    painter = painterResource(id = R.drawable.location),
-                    contentDescription = "Location"
+                Row {
+                    Icon(
+                        painter = painterResource(id = R.drawable.location),
+                        contentDescription = "Location"
+                    )
+                    Text(puppy.location)
+                }
+                Row(modifier = Modifier.padding(vertical = 4.dp)) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.cat_footprint),
+                        contentDescription = "Breed"
+                    )
+                    Text(puppy.breed)
+                }
+                Row {
+                    Icon(
+                        painter = painterResource(id = R.drawable.sand_clock),
+                        contentDescription = "Age"
+                    )
+                    Text(puppy.age)
+                }
+                Button(
+                    content = { Text("Adopt me!") },
+                    onClick = {
+                        // TODO: Adoption screen
+                    },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(60.dp)
+                        .padding(vertical = 8.dp)
                 )
-                Text(puppy.location)
             }
-            Row(modifier = Modifier.padding(vertical = 4.dp)) {
-                Icon(
-                    painter = painterResource(id = R.drawable.cat_footprint),
-                    contentDescription = "Breed"
-                )
-                Text(puppy.breed)
-            }
-            Row {
-                Icon(
-                    painter = painterResource(id = R.drawable.sand_clock),
-                    contentDescription = "Age"
-                )
-                Text(puppy.age)
-            }
-            Button(
-                content = { Text("Adopt me!") },
-                onClick = {
-                    // TODO: Adoption screen
-                },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(60.dp)
-                    .padding(vertical = 8.dp)
-            )
         }
     }
 }

@@ -24,13 +24,16 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.navigate
+import com.example.androiddevchallenge.data.PuppyStaticData
 import com.example.androiddevchallenge.model.Puppy
 import com.example.androiddevchallenge.ui.composable.DogListItem
 import com.example.androiddevchallenge.ui.composable.Loading
+import com.example.androiddevchallenge.ui.theme.PuppyTheme
 
 @Composable
 fun ListScreen(navController: NavController, listViewModel: ListViewModel = viewModel()) {
@@ -64,5 +67,21 @@ fun PuppyList(puppies: List<Puppy>) {
                 listViewModel.launchIntent(ListIntent.ShowPuppy(puppy.id))
             }
         }
+    }
+}
+
+@Preview
+@Composable
+fun PuppyListPreview() {
+    PuppyTheme {
+        PuppyList(PuppyStaticData.puppies)
+    }
+}
+
+@Preview
+@Composable
+fun PuppyListDarkPreview() {
+    PuppyTheme(darkTheme = true) {
+        PuppyList(PuppyStaticData.puppies)
     }
 }
