@@ -25,15 +25,19 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.androiddevchallenge.data.PuppyStaticData
 import com.example.androiddevchallenge.model.Puppy
 import com.example.androiddevchallenge.ui.theme.PuppyTheme
@@ -57,8 +61,20 @@ fun DogListItem(puppy: Puppy, onClick: () -> Unit) {
                 contentScale = ContentScale.FillHeight
             )
             Column(modifier = Modifier.padding(start = 8.dp)) {
-                Text("${puppy.name} - ${puppy.breed}")
-                Text(puppy.location)
+                Text(
+                    text = puppy.name,
+                    color = MaterialTheme.colors.primary,
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Bold
+                )
+                Text(
+                    text = puppy.breed,
+                    fontSize = 14.sp
+                )
+                Text(
+                    text = puppy.location,
+                    fontSize = 12.sp
+                )
             }
         }
     }
